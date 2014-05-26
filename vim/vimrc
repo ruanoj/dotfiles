@@ -1,6 +1,6 @@
-set nocompatible 
-filetype off
+set nocompatible
 
+filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
@@ -10,33 +10,76 @@ call vundle#begin()
 " Vundle has to manage Vundle.
 Bundle 'gmarik/vundle'
 
+
 " Syntax, colour schemes and the line
 Bundle 'sheerun/vim-polyglot'
 
 " Actual Plugins
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-surround'
-Bundle 'kien/ctrlp.vim'
-Bundle 'SirVer/ultisnips'
 Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'tpope/vim-rbenv'
-Bundle 'tpope/vim-eunuch'
-Bundle 'thoughtbot/vim-rspec'
 Bundle 'editorconfig/editorconfig-vim'
-Bundle 'rking/ag.vim'
-Bundle 'elixir-lang/vim-elixir'
-"Bundle 'vim-ruby/vim-ruby'
-"Bundle 'jackfranklin/vim-markdown-writer'
-Bundle 'taq/vim-git-branch-info'
+
+Bundle 'kien/ctrlp.vim'
+  " full path fuzzy file, buffer, mru, tag ... finder
+  " https://github.com/kien/ctrlp.vim
+  let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|bower_components\'
+  let g:ctrlp_clear_cache_on_exit = 0
+  let g:ctrlp_extensions = ['tag']
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
 Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-dispatch'
-Bundle 'xolox/vim-misc'
-"Bundle 'xolox/vim-easytags'
+  " filetree - NERDTree
+
+Bundle 'SirVer/ultisnips'
+  " ultisnips settings so they don't compete with YCM
+  let g:UltiSnipsExpandTrigger="<c-k>"
+  let g:UltiSnipsJumpForwardTrigger="<c-k>"
+  let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
+  let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+Bundle 'taq/vim-git-branch-info'
+  " Shows branches information on the status line
+  " https://github.com/taq/vim-git-branch-info/blob/master/plugin/git-branch-info.vim
+  let g:git_branch_status_text=' Git'
+  let g:git_branch_status_head_current=1
+  let g:git_branch_status_nogit=""
+  set statusline=%F%m%r%h%w\                  " fullpath and status modified sign
+  set statusline+=\ %y                        " filetype
+  set statusline+=\ %{GitBranchInfoString()}
+  set statusline+=%=                          " this line bumps the line number to RHS
+  set statusline+=\ [%l\/%L]                  " line number and column number
+
 Bundle 'terryma/vim-multiple-cursors'
+  " https://github.com/terryma/vim-multiple-cursors
+Bundle 'tpope/vim-commentary'
+  " comment stuff out
+  " https://github.com/tpope/vim-commentary
+Bundle 'tpope/vim-dispatch'
+  " kicks off builds and test suites using one of several asynchronous
+  " adapters (inc. tmux, screen, iTerm, Windows and a headless mode)
+  " https://github.com/tpope/vim-dispatch
+Bundle 'tpope/vim-endwise'
+  " helps to end certain structures automatically
+  " https://github.com/tpope/vim-endwise
+Bundle 'tpope/vim-eunuch'
+  " Vim sugar for common UNIX shell commands
+Bundle 'tpope/vim-git'
+  " ?
+Bundle 'tpope/vim-repeat'
+  " remaps . in a way that plugins can tap into it
+Bundle 'tpope/vim-surround'
+  " surroundings: parenthesis, brackets, quotes, XML tags and more
+  " editing terms surrounded by tags
+  " https://github.com/tpope/vim-surround
+
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'marijnh/tern_for_vim'
+  let g:ycm_min_num_of_chars_for_completion = 3
+  let g:ycm_collect_identifiers_from_tags_files = 1
+  let g:ycm_autoclose_preview_window_after_completion = 1
+  let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Bundle 'xolox/vim-misc'
+"Bundle 'xolox/vim-easytags'
+  " https://github.com/xolox/vim-easytags
 
 " All of your Plugins must be added before the following line
 call vundle#end()
@@ -54,27 +97,13 @@ filetype plugin indent on
 " set :h vundle for mode details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" status bar
-set statusline=%F%m%r%h%w\  "fullpath and status modified sign
-set statusline+=\ %y "filetype
-let g:git_branch_status_text=' Git'
-let g:git_branch_status_head_current=1
-let g:git_branch_status_nogit=""
-set statusline+=\ %{GitBranchInfoString()}
-set statusline+=%= " this line bumps the line number to RHS
-set statusline+=\ [%l\/%L] "line number and column number
+" find
+set path=**,.git
+set suffixesadd=.java,.scala
 
-"make vim-rspec play nice with dispatch
-let g:rspec_command = "Dispatch bundle exec rspec {spec}"
 
 " auto load files if vim detects they have been changed outside of Vim
 set autoread
-
-" YCM settings
-let g:ycm_min_num_of_chars_for_completion = 3
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
 
 " assume the /g flag on :s substitutions to replace all matches in a line
 set gdefault
@@ -197,18 +226,16 @@ let g:indentLine_enabled = 0
 
 " settings for tags and vim-easytags
 set tags=./.tags;
-" 2 = will use ./.tags file, or create if it doesn't exist
-let g:easytags_dynamic_files = 2
 
 
 let g:tex_flavor = "latex"
 
 " ~~~ MAPPINGS BELOW ~~~
 
-" TODO: make this better, more intelligent
-function! JF_find_private()
-  execute "/private"
-endfunction
+"" TODO: make this better, more intelligent
+"function! JF_find_private()
+"  execute "/private"
+"endfunction
 
 function! OpenProjectNotes()
   let directory = getcwd()
@@ -220,7 +247,7 @@ map <leader>bb :!bundle install<cr>
 map <leader>cf :CtrlPClearCache<cr>
 map <leader>ct :TagbarToggle<CR>
 map <leader>ctp :TagbarTogglePause<CR>
-map <leader>e :call JF_ExecuteCurrentFile()<CR>
+"map <leader>e :call JF_ExecuteCurrentFile()<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 map <leader>gf :e Gemfile<cr>
 map <leader>ls :echo UltiSnips_ListSnippets()<CR>
@@ -230,17 +257,13 @@ nnoremap <leader>my :call MW_YamlFrontMatter()<CR>
 nnoremap <leader>ml :call MW_MakeWordLink()<CR>
 map <leader>nt :!npm test<cr>
 nnoremap <Leader>p :set invpaste paste?<CR>
-map <leader>pv :call JF_find_private()<cr>
+"map <leader>pv :call JF_find_private()<cr>
 map <leader>pj :e package.json<cr>
 map <leader>pt :CtrlPTag<cr>
 nnoremap <leader>pn :call OpenProjectNotes()<cr>
 map <Leader>rn :Rename
-map <Leader>rt :call RunCurrentSpecFile()<CR>
-map <Leader>rs :call RunNearestSpec()<CR>
-map <Leader>rl :call RunLastSpec()<CR>
-map <Leader>ra :call RunAllSpecs()<CR>
 map <leader>spj :vsplit package.json<cr>
-map <leader>s :call JF_ExecuteRelevantTestFile()<CR>
+"map <leader>s :call JF_ExecuteRelevantTestFile()<CR>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>sp :vsplit ~/dotfiles/scratchpad<cr>
 map <leader>sc :setlocal spell!<CR>
@@ -267,11 +290,6 @@ imap <C-n> <esc>:w<CR>:Make<CR>
 " make it do . in visual mode
 vnoremap . :norm.<CR>
 
-" control P
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|bower_components\'
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_extensions = ['tag']
-
 " navigating tabs
 nnoremap th  :tabfirst<CR>
 nnoremap tj  :tabnext<CR>
@@ -285,12 +303,6 @@ nnoremap td  :tabclose<CR>
 " Don't add the comment prefix when I hit enter or o/O on a comment line.
 autocmd FileType * setlocal formatoptions-=r formatoptions-=o
 
-" ultisnips settings so they don't compete with YCM
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-k>"
-let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
-let g:UltiSnipsSnippetDirectories=["UltiSnips"]
-
 "This unsets the 'last search pattern' register by hitting return
 nnoremap <CR> :noh<CR><CR>
 
@@ -298,15 +310,15 @@ nnoremap <CR> :noh<CR><CR>
 " Use ag over grep
 set grepprg=ag\ --nogroup\ --nocolor
 
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR><CR>
 
 " Prevent Vim from clobbering the scrollback buffer. See
 " http://www.shallowsky.com/linux/noaltscreen.html
 set t_ti= t_te=
+
+" Required for copy-paste between tmux on MacOSX ?
+set clipboard=unnamed
 
 
 " Protect large files from sourcing and other overhead.
@@ -328,3 +340,5 @@ if !exists("my_auto_commands_loaded")
   augroup END
 endif
 
+" Open NERDTree automatically when vim starts up and no files were specified
+autocmd vimenter * if !argc() | NERDTree | endif
