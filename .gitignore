@@ -1,0 +1,7 @@
+bash/bash/git-aware-prompt/.git
+vim/vim/bundle
+vim/vim/plugin
+vim/vim/.netrwhist
+vim/vim/spell
+zsh/zsh/oh-my-zsh
+.DS_Store
