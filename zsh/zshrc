@@ -1,0 +1,172 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.zsh/oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="sonicradish"
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim="/Applications/MacVim.app/Contents/MacOS/vim"
+alias vi=vim
+# Next variable is used when vim is invoked from a pager (e.g. less)
+export VISUAL="/Applications/MacVim.app/Contents/MacOS/vim"
+alias zshconfig="vim ~/.zshrc"
+
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Uncomment this to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment to change how often before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want to disable command autocorrection
+# DISABLE_CORRECTION="true"
+
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+#COMPLETION_WAITING_DOTS="true"
+
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment following line if you want to  shown in the command execution time stamp 
+# in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
+# yyyy-mm-dd
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+#plugins=(git osx scala vi-mode)
+plugins=(git osx scala)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+#export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/Data/bin:$PATH:/usr/local/sbt/bin
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# # Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+# Colors vary depending on time lapsed.
+ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
+ZSH_THEME_GIT_TIME_SHORT_COMMIT_MEDIUM="%{$fg[yellow]%}"
+ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
+ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
+
+source ~/.zsh/git-prompt/zshrc.sh
+
+# an example prompt
+#PATH="/usr/local/share/npm/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+#PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+#PATH="/Users/jackfranklin/lejos/bin:$PATH"
+
+#export NXJ_HOME=/Users/jackfranklin/lejos
+#export LEJOS_NXT_JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home
+
+TZ="Europe/London"
+HISTFILE=$HOME/.zhistory
+HISTSIZE=20000
+SAVEHIST=20000
+setopt HIST_IGNORE_SPACE
+HOSTNAME="`hostname`"
+PAGER='less'
+
+# set up some colour variables for usage in prompt
+autoload colors zsh/terminfo
+if [[ "$terminfo[colors]" -ge 8 ]]; then
+  colors
+fi
+for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+  eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+  eval PR_LIGHT_$color='%{$fg[${(L)color}]%}'
+  (( count = $count + 1 ))
+done
+PR_NO_COLOR="%{$terminfo[sgr0]%}"
+
+get_suspended_jobs() {
+  # thanks to @mheap for his help
+  NUM_JOBS="`jobs | wc -l`"
+  if test $NUM_JOBS -lt 1 ; then
+    echo ""
+  else
+    echo " ("`jobs | sed -r 's/ .*suspended (\(signal\))?//' | tr -s ' ' | sed 's/\[\([^]]*\)\]/\1:/g' | sed 's/\: /\:/g'`")"
+  fi
+}
+
+RPS1='$(get_suspended_jobs)'
+# main prompt
+# commented out as we're using oh-my-zsh
+# PROMPT='%m $PR_RED%3c$PR_NO_COLOR$(git_super_status) '
+
+#LANGUAGE
+LC_ALL='en_US.UTF-8'
+# LC_CTYPE=C
+# DISPLAY=:0
+
+
+# load in aliases
+source $HOME/dotfiles/zsh/aliases
+
+# load in some functions
+source $HOME/dotfiles/zsh/functions
+
+
+# get auto completes going
+autoload -U compinit
+compinit
+bindkey '^I' complete-word # complete on tab, leave expansion to _expand
+
+### Added by the Heroku Toolbelt
+#export PATH="/usr/local/heroku/bin:$PATH"
+
+GIT_MERGE_AUTOEDIT=no
+export GIT_MERGE_AUTOEDIT
+
+# for the Z plugin https://github.com/rupa/z
+#. /usr/local/Cellar/z/1.8/etc/profile.d/z.sh
+
+export EDITOR='vim'
+# But still use emacs-style zsh bindings
+bindkey -e
+
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi
+
+# for pipe2eval plugin
+export PIP2EVAL_TMP_FILE_PATH=/tmp/shms
+
+# this allows Vim to use C-s as a mapping
+stty -ixon
+
+# better cding
+# http://robots.thoughtbot.com/cding-to-frequently-used-directories-in-zsh
+setopt auto_cd
+#cdpath=($HOME/git $HOME/Dropbox $HOME/git/fyp $HOME/Dropbox/Sites)
+cdpath=($HOME/git '$HOME/Google Drive' $HOME/Projects $HOME/Workspace)

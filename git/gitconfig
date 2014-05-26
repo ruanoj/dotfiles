@@ -1,0 +1,27 @@
+[user]
+	name = Jon Ruano
+	email = ruanoj@server.fake
+[diff]
+	tool = vimdiff
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	last = log -l HEAD
+	st = status
+	co = checkout
+	br = branch
+	ci = commit -v
+  di = diff
+  amend = commit --amend
+  aa = add --all
+  fa = fetch --all
+  pom = push origin master
+	unstage = reset HEAD --
+[push]
+	default = simple
+[color]
+	ui = true
+[help]
+	autocorrect = 1
+[core]
+	excludesfile = ~/.gitignore_global
+	pager = less -r

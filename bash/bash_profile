@@ -1,0 +1,13 @@
+## vim
+#alias vim='mvim'
+alias vi=vim
+export VISUAL='/Applications/MacVim.app/Contents/MacOS/vim'
+## git aware prompt
+#export GITAWAREPROMPT=~/.bash/git-aware-prompt
+#source $GITAWAREPROMPT/main.sh
+# git-profile contributions
+export FROMGIT=~/.bash/fromgit
+source $FROMGIT/git-prompt.sh
+source $FROMGIT/git-completion.bash
+PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'
+

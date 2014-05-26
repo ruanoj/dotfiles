@@ -1,0 +1,24 @@
+cd () {
+  # cd with no parameters takes us to home folder
+  if [[ $# == 0 ]]; then 
+    builtin cd "$HOME"
+  else
+    builtin cd "$*"
+  fi
+  # list files
+  ls
+}
+
+
+function ck
+{
+    command mkdir $1 && cd $1
+}
+
+function g {
+  if [[ $# > 0 ]]; then
+    git $@
+  else
+    git status
+  fi
+}
