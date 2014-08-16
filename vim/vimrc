@@ -342,3 +342,7 @@ endif
 
 " Open NERDTree automatically when vim starts up and no files were specified
 autocmd vimenter * if !argc() | NERDTree | endif
+
+" Absolute line numbers in insert mode, relative otherwise
+autocmd insertEnter * set norelativenumber
+autocmd insertLeave * set relativenumber
