@@ -4,8 +4,10 @@ DFDIR=$(HOME)/dotfiles
 VUNDLEDIR=~/.vim/bundle/vundle
 # path where ycm lives
 YCMDIR=~/.vim/bundle/YouCompleteMe
+# oh-my-zsh
+OMZDIR=$(DFDIR)/zsh/zsh/oh-my-zsh
 
-all: symlinks clone_vundle ycm
+all: symlinks clone_vundle ycm omz
 	@echo "Reminder- Vim plugins are managed within Vim with Vundle."
 	@echo "          Run :BundleInstall from Vim."
 
@@ -38,5 +40,12 @@ ycm:
 		then cd $(YCMDIR) && ./install.sh; \
 		fi; \
 	else echo "Remember to re-run make once Vim plugins are installed"; \
+	fi
+
+omz:
+	@if [ ! -d $(OMZDIR) ]; \
+	then \
+	@echo "Cloning oh-my-zsh..."; \
+	git clone git://github.com/robbyrussell/oh-my-zsh.git $(OMZDIR); \
 	fi
 
