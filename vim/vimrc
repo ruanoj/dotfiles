@@ -1,106 +1,113 @@
 set nocompatible
 
-filetype off
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+if has("win32")
+  source $VIMRUNTIME/vimrc_example.vim
+  source $VIMRUNTIME/mswin.vim
+  behave mswin
+endif
 
-" Vundle has to manage Vundle.
-Bundle 'gmarik/vundle'
+if !has("win32")
+  filetype off
+  " set the runtime path to include Vundle and initialize
+  set rtp+=~/.vim/bundle/vundle/
+  call vundle#begin()
+  " alternatively, pass a path where Vundle should install plugins
+  "call vundle#begin('~/some/path/here')
 
+  " Vundle has to manage Vundle.
+  Bundle 'gmarik/vundle'
 
-" Syntax, colour schemes and the line
-Bundle 'sheerun/vim-polyglot'
+  " Syntax, colour schemes and the line
+  Bundle 'sheerun/vim-polyglot'
 
-" Actual Plugins
-Bundle 'christoomey/vim-tmux-navigator'
-Bundle 'editorconfig/editorconfig-vim'
+  " Actual Plugins
+  Bundle 'christoomey/vim-tmux-navigator'
+  Bundle 'editorconfig/editorconfig-vim'
 
-Bundle 'kien/ctrlp.vim'
-  " full path fuzzy file, buffer, mru, tag ... finder
-  " https://github.com/kien/ctrlp.vim
-  let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|bower_components\'
-  let g:ctrlp_clear_cache_on_exit = 0
-  let g:ctrlp_extensions = ['tag']
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  Bundle 'kien/ctrlp.vim'
+    " full path fuzzy file, buffer, mru, tag ... finder
+    " https://github.com/kien/ctrlp.vim
+    let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|bower_components\'
+    let g:ctrlp_clear_cache_on_exit = 0
+    let g:ctrlp_extensions = ['tag']
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
-Bundle 'scrooloose/nerdtree'
-  " filetree - NERDTree
+  Bundle 'scrooloose/nerdtree'
+    " filetree - NERDTree
 
-Bundle 'SirVer/ultisnips'
-  " ultisnips settings so they don't compete with YCM
-  let g:UltiSnipsExpandTrigger="<c-k>"
-  let g:UltiSnipsJumpForwardTrigger="<c-k>"
-  let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
-  let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+  Bundle 'SirVer/ultisnips'
+    " ultisnips settings so they don't compete with YCM
+    let g:UltiSnipsExpandTrigger="<c-k>"
+    let g:UltiSnipsJumpForwardTrigger="<c-k>"
+    let g:UltiSnipsJumpBackwardTrigger="<s-c-j>"
+    let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 
-Bundle 'taq/vim-git-branch-info'
-  " Shows branches information on the status line
-  " https://github.com/taq/vim-git-branch-info/blob/master/plugin/git-branch-info.vim
-  let g:git_branch_status_text=' Git'
-  let g:git_branch_status_head_current=1
-  let g:git_branch_status_nogit=""
-  set statusline=%F%m%r%h%w\                  " fullpath and status modified sign
-  set statusline+=\ %y                        " filetype
-  set statusline+=\ %{GitBranchInfoString()}
-  set statusline+=%=                          " this line bumps the line number to RHS
-  set statusline+=\ [%l\/%L]                  " line number and column number
+  Bundle 'taq/vim-git-branch-info'
+    " Shows branches information on the status line
+    " https://github.com/taq/vim-git-branch-info/blob/master/plugin/git-branch-info.vim
+    let g:git_branch_status_text=' Git'
+    let g:git_branch_status_head_current=1
+    let g:git_branch_status_nogit=""
+    set statusline=%F%m%r%h%w\                  " fullpath and status modified sign
+    set statusline+=\ %y                        " filetype
+    set statusline+=\ %{GitBranchInfoString()}
+    set statusline+=%=                          " this line bumps the line number to RHS
+    set statusline+=\ [%l\/%L]                  " line number and column number
 
-Bundle 'terryma/vim-multiple-cursors'
-  " https://github.com/terryma/vim-multiple-cursors
-Bundle 'tpope/vim-commentary'
-  " comment stuff out
-  " https://github.com/tpope/vim-commentary
-Bundle 'tpope/vim-dispatch'
-  " kicks off builds and test suites using one of several asynchronous
-  " adapters (inc. tmux, screen, iTerm, Windows and a headless mode)
-  " https://github.com/tpope/vim-dispatch
-Bundle 'tpope/vim-endwise'
-  " helps to end certain structures automatically
-  " https://github.com/tpope/vim-endwise
-Bundle 'tpope/vim-eunuch'
-  " Vim sugar for common UNIX shell commands
-Bundle 'tpope/vim-git'
-  " ?
-Bundle 'tpope/vim-repeat'
-  " remaps . in a way that plugins can tap into it
-Bundle 'tpope/vim-surround'
-  " surroundings: parenthesis, brackets, quotes, XML tags and more
-  " editing terms surrounded by tags
-  " https://github.com/tpope/vim-surround
+  Bundle 'terryma/vim-multiple-cursors'
+    " https://github.com/terryma/vim-multiple-cursors
+  Bundle 'tpope/vim-commentary'
+    " comment stuff out
+    " https://github.com/tpope/vim-commentary
+  Bundle 'tpope/vim-dispatch'
+    " kicks off builds and test suites using one of several asynchronous
+    " adapters (inc. tmux, screen, iTerm, Windows and a headless mode)
+    " https://github.com/tpope/vim-dispatch
+  Bundle 'tpope/vim-endwise'
+    " helps to end certain structures automatically
+    " https://github.com/tpope/vim-endwise
+  Bundle 'tpope/vim-eunuch'
+    " Vim sugar for common UNIX shell commands
+  Bundle 'tpope/vim-git'
+    " ?
+  Bundle 'tpope/vim-repeat'
+    " remaps . in a way that plugins can tap into it
+  Bundle 'tpope/vim-surround'
+    " surroundings: parenthesis, brackets, quotes, XML tags and more
+    " editing terms surrounded by tags
+    " https://github.com/tpope/vim-surround
 
-Bundle 'Valloric/YouCompleteMe'
-  let g:ycm_min_num_of_chars_for_completion = 3
-  let g:ycm_collect_identifiers_from_tags_files = 1
-  let g:ycm_autoclose_preview_window_after_completion = 1
-  let g:ycm_autoclose_preview_window_after_insertion = 1
+  Bundle 'Valloric/YouCompleteMe'
+    let g:ycm_min_num_of_chars_for_completion = 3
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
 
-" Bundle 'xolox/vim-misc'
-"Bundle 'xolox/vim-easytags'
-  " https://github.com/xolox/vim-easytags
+  " Bundle 'xolox/vim-misc'
+  "Bundle 'xolox/vim-easytags'
+    " https://github.com/xolox/vim-easytags
 
-" All of your Plugins must be added before the following line
-call vundle#end()
-" Enable file type detection. Do this after Vundle calls.
-filetype plugin indent on
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList			- list configured plugins
-" :PluginInstall(!)		- install (update) plugins
-" :PluginSearch(!) foo	- search (or refresh cache first) for foo
-" :PluginClean(1)		- confirm (or auto-approve) removal of unused plugins
-"
-" set :h vundle for mode details or wiki for FAQ
-" Put your non-Plugin stuff after this line
+  " All of your Plugins must be added before the following line
+  call vundle#end()
+  " Enable file type detection. Do this after Vundle calls.
+  filetype plugin indent on
+  " To ignore plugin indent changes, instead use:
+  "filetype plugin on
+  "
+  " Brief help
+  " :PluginList			- list configured plugins
+  " :PluginInstall(!)		- install (update) plugins
+  " :PluginSearch(!) foo	- search (or refresh cache first) for foo
+  " :PluginClean(1)		- confirm (or auto-approve) removal of unused plugins
+  "
+  " set :h vundle for mode details or wiki for FAQ
+  " Put your non-Plugin stuff after this line
+endif
+
 
 " find
 set path=**,.git
 set suffixesadd=.java,.scala
-
 
 " auto load files if vim detects they have been changed outside of Vim
 set autoread
@@ -172,9 +179,15 @@ set ignorecase smartcase
 set scrolloff=5
 
 " Store temporary files in a central spot
+set noswapfile
 set backup
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+if has("win32")
+  set backupdir=~\\_vim-tmp
+  set directory=~\\_vim-tmp
+else
+  set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+  set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+endif
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -199,7 +212,9 @@ set relativenumber
 
 " pretty colours
 set t_Co=256
-set term=xterm-256color
+if !has("win32")
+  set term=xterm-256color
+endif
 set background=dark
 
 set list listchars=tab:»·,trail:·
