@@ -1,6 +1,5 @@
 # lazy
 alias v="vim"
-alias vi="echo use v!!"
 
 # misc
 alias slrn="slrn -n"
