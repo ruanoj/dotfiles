@@ -58,7 +58,7 @@ alias gt="git tag"
 #alias vssh="vagrant ssh"
 
 # dotfiles
-alias df="cd ~/dotfiles"
+alias dotf="cd ~/dotfiles"
 alias srcz="source ~/.zshrc"
 
 # tmux
