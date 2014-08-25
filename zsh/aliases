@@ -9,7 +9,7 @@ alias ll="ls -al"
 alias ls="ls -G"
 
 # some common folders I like to be in
-#alias dropbox="cd ~/Dropbox/"
+alias gdrive="cd ~/Google Drive/"
 #alias sites="cd ~/Dropbox/Sites"
 
 # ssh
