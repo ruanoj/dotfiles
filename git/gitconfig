@@ -25,3 +25,6 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	pager = less -r
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
