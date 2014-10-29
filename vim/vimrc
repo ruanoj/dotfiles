@@ -385,3 +385,7 @@ autocmd vimenter * if !argc() | NERDTree | endif
 " Absolute line numbers in insert mode, relative otherwise
 autocmd insertEnter * set norelativenumber
 autocmd insertLeave * set relativenumber
+
+" sudowrite
+cmap w!! w !sudo tee % > /dev/null
+
