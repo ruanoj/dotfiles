@@ -1,3 +1,5 @@
+# vim: set filetype=sh:
+
 cd () {
   # cd with no parameters takes us to home folder
   if [[ $# == 0 ]]; then 
