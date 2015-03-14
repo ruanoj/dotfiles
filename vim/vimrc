@@ -167,7 +167,7 @@ set showmatch
 set incsearch
 set hlsearch
 
-" Don't wait so long for the next keypress (particularly in ambigious Leader
+" Don't wait so long for the next keypress (particularly in ambiguous Leader
 " situations. (via @r00k dotfiles)
 set timeoutlen=500
 
@@ -213,7 +213,7 @@ set wildmode=full
 " make tab completion for files/buffers act like bash
 set wildmenu
 
-let mapleader=","
+let mapleader="\<Space>"
 
 " ignore git, npm modules and jekyll _site
 set wildignore+=*.o,*.obj,.git,node_modules,_site,*.class,*.zip,*.aux
@@ -298,7 +298,7 @@ map <leader>sc :setlocal spell!<CR>
 " map <leader>sa :call JF_RunAllTests()<CR>
 map <leader>sph <C-w>t<C-w>K<CR>
 map <leader>spv <C-w>t<C-w>H<CR>
-map <leader>t :CtrlP<cr>
+map <leader>o :CtrlP<cr>
 map <leader>us :UltiSnipsEdit<CR>
 " cleans up whitespace
 " TODO extract this into FN which sets mark so it jumps back to where you were
@@ -306,6 +306,7 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<cr>
 map <Leader>p :set paste<CR>o<esc>"*]p:set nopaste<cr>
 
 " map saving and tabs to Control-"
+nnoremap <Leader>w :w<CR>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 map <C-q> <esc>:x<CR>
@@ -385,3 +386,4 @@ autocmd vimenter * if !argc() | NERDTree | endif
 " Absolute line numbers in insert mode, relative otherwise
 autocmd insertEnter * set norelativenumber
 autocmd insertLeave * set relativenumber
+
