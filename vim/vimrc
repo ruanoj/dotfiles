@@ -377,7 +377,12 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd insertEnter * set norelativenumber
 autocmd insertLeave * set relativenumber
 
+<<<<<<< HEAD
 " add kspell to defaults in complete so spell checker is used when offering
 " completions using C-X
 set complete=.,w,b,u,t,i,kspell
+=======
+" sudowrite
+cmap w!! w !sudo tee % > /dev/null
+>>>>>>> 5dd4d2aa0e8a8a5e181a49a5adb7bf5f47d6c1da
 
