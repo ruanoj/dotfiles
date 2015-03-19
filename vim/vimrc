@@ -77,14 +77,8 @@ if !has("win32")
     " editing terms surrounded by tags
     " https://github.com/tpope/vim-surround
 
-  Bundle 'Valloric/YouCompleteMe'
-    let g:ycm_min_num_of_chars_for_completion = 3
-    let g:ycm_collect_identifiers_from_tags_files = 1
-    let g:ycm_autoclose_preview_window_after_completion = 1
-    let g:ycm_autoclose_preview_window_after_insertion = 1
-
-  " Bundle 'xolox/vim-misc'
-  "Bundle 'xolox/vim-easytags'
+ Bundle 'xolox/vim-misc'
+ Bundle 'xolox/vim-easytags'
     " https://github.com/xolox/vim-easytags
 
   " All of your Plugins must be added before the following line
@@ -115,9 +109,12 @@ set autoread
 set gdefault
 
 " fix slight delay after pressing ESC then O
-" http://ksjoberg.com/vim-esckeys.html
+" it seems to fix slight delay after leader in insert mode (leader changed to
+" space)
+" http://superuser.com/questions/161178/why-does-vim-delay-for-a-second-whenever-i-use-the-o-command-open-a-new-line
+" disabling escape keys makes cursor keys not work in insert mode
 " set  noesckeys
-set timeout timeoutlen=1000 ttimeoutlen=100
+set timeout ttimeoutlen=100
 
 " allow unsaved background buffers and remember marks/undo for them
 set hidden
@@ -275,7 +272,6 @@ map <leader>bb :!bundle install<cr>
 map <leader>cf :CtrlPClearCache<cr>
 map <leader>ct :TagbarToggle<CR>
 map <leader>ctp :TagbarTogglePause<CR>
-" map <leader>e :call JF_ExecuteCurrentFile()<CR>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " map <leader>gf :e Gemfile<cr>
 " map <leader>ls :echo UltiSnips_ListSnippets()<CR>
@@ -283,14 +279,11 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " nnoremap <leader>mfi :call MW_ConvertFencedToIndent()<CR>
 " nnoremap <leader>my :call MW_YamlFrontMatter()<CR>
 " nnoremap <leader>ml :call MW_MakeWordLink()<CR>
-map <leader>nt :!npm test<cr>
 nnoremap <Leader>p :set invpaste paste?<CR>
 " map <leader>pv :call JF_find_private()<cr>
-" map <leader>pj :e package.json<cr>
 map <leader>pt :CtrlPTag<cr>
 nnoremap <leader>pn :call OpenProjectNotes()<cr>
 map <Leader>rn :Rename
-" map <leader>spj :vsplit package.json<cr>
 " map <leader>s :call JF_ExecuteRelevantTestFile()<CR>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>sp :vsplit ~/dotfiles/scratchpad<cr>
@@ -312,9 +305,6 @@ imap <C-s> <esc>:w<CR>
 map <C-q> <esc>:x<CR>
 imap <C-q> <esc>:x<CR>
 map <C-t> <esc>:tabnew<CR>
-" ctrl n to esc, save and then run Make (sends make but through vim dispatch)
-map <C-n> <esc>:w<CR>:Make<CR>
-imap <C-n> <esc>:w<CR>:Make<CR>
 
 " make it do . in visual mode
 vnoremap . :norm.<CR>
@@ -386,4 +376,8 @@ autocmd vimenter * if !argc() | NERDTree | endif
 " Absolute line numbers in insert mode, relative otherwise
 autocmd insertEnter * set norelativenumber
 autocmd insertLeave * set relativenumber
+
+" add kspell to defaults in complete so spell checker is used when offering
+" completions using C-X
+set complete=.,w,b,u,t,i,kspell
 
