@@ -21,7 +21,7 @@ real_symlinks:
 	@ln -sf $(DFDIR)/zsh/zshenv ~/.zshenv
 	@ln -sf $(DFDIR)/zsh/zshrc ~/.zshrc
 	@ln -nsf $(DFDIR)/vim/vim ~/.vim
-	@mkdir ~/.config
+	@mkdir -p ~/.config
 	@ln -sf ~/.vim ~/config/nvim
 	@ln -sf $(DFDIR)/vim/vimrc ~/.vimrc
 	@ln -nsf $(DFDIR)/vim/plugin ~/.vim/plugin
