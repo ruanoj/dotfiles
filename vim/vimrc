@@ -221,13 +221,13 @@ set relativenumber
 
 " pretty colours
 set t_Co=256
-if !has("win32")
+if !has("win32") && !has('nvim')
   set term=xterm-256color
 endif
 set background=dark
 
 " show some invisible characters
-set list listchars=tab:»·,eol:¬,trail:·
+set list listchars=tab:»·,eol:¬,trail:·,nbsp:~
 
 " :Q to quit (should be default)
 command! Q q
@@ -244,7 +244,10 @@ set splitright
 " http://usevim.com/2012/05/16/mouse/
 set ttyfast
 set mouse=a
-set ttymouse=xterm2
+if !has('nvim')
+  " removed from nvim
+  set ttymouse=xterm2
+endif
 
 " turn indentline off by default
 let g:indentLine_enabled = 0
