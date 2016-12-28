@@ -24,3 +24,15 @@ function g {
     git status
   fi
 }
+
+# firstInstalledCommand
+# Out of a list of commands (e.g. editors),
+# returns the first available one (with complete path)
+firstInstalledCommand() {
+  for (( i = 1; i <= $#; i += 1)); do
+    cmd= whence -p $argv[$i]
+    if [[ $? = 0 ]]; then
+      return $cmd
+    fi
+  done
+}
