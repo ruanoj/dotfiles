@@ -1,6 +1,6 @@
 [user]
 	name = Jon Ruano
-	email = ruanoj@server.fake
+	email = ruanoj@users.noreply.github.com
 [diff]
 	tool = vimdiff
 [alias]
@@ -10,11 +10,11 @@
 	co = checkout
 	br = branch
 	ci = commit -v
-  di = diff
-  amend = commit --amend
-  aa = add --all
-  fa = fetch --all
-  pom = push origin master
+	di = diff
+	amend = commit --amend
+	aa = add --all
+	fa = fetch --all
+	pom = push origin master
 	unstage = reset HEAD --
 [push]
 	default = simple
