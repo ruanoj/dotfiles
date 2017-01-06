@@ -55,7 +55,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 #export PATH=$HOME/Data/bin:$PATH:/usr/local/sbt/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
