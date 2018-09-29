@@ -6,8 +6,10 @@ VUNDLEDIR=~/.vim/bundle/vundle
 YCMDIR=~/.vim/bundle/YouCompleteMe
 # oh-my-zsh
 OMZDIR=$(DFDIR)/zsh/zsh/oh-my-zsh
+# zsh-git-prompt
+ZGPDIR=$(DFDIR)/zsh/zsh/git-prompt
 
-all: symlinks clone_vundle ycm omz
+all: symlinks clone_vundle ycm omz zsh-git-prompt
 	@echo "Reminder- Vim plugins are managed within Vim with Vundle."
 	@echo "          Run :BundleInstall from Vim."
 
@@ -49,5 +51,12 @@ omz:
 	then \
 	@echo "Cloning oh-my-zsh..."; \
 	git clone git://github.com/robbyrussell/oh-my-zsh.git $(OMZDIR); \
+	fi
+
+zsh-git-prompt:
+	@if [ ! -d $(ZGPDIR) ]; \
+	then \
+	@echo "Cloning zsh-git-prompt..."; \
+	git clone git://github.com/olivierverdier/zsh-git-prompt.git $(ZGPDIR); \
 	fi
 

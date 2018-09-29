@@ -3,5 +3,6 @@ vim/vim/bundle
 vim/vim/plugin
 vim/vim/.netrwhist
 vim/vim/spell
+zsh/zsh/git-prompt
 zsh/zsh/oh-my-zsh
 .DS_Store
