@@ -77,8 +77,8 @@ if !has("win32")
     " editing terms surrounded by tags
     " https://github.com/tpope/vim-surround
 
- Bundle 'xolox/vim-misc'
- Bundle 'xolox/vim-easytags'
+" Bundle 'xolox/vim-misc'
+" Bundle 'xolox/vim-easytags'
     " https://github.com/xolox/vim-easytags
 
   " All of your Plugins must be added before the following line
