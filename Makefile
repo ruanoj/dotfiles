@@ -34,7 +34,7 @@ real_symlinks:
 
 clone_vundle: 
 	@if [ ! -d $(VUNDLEDIR) ]; \
-	then git clone https://github.com/gmarik/Vundle.vim.git $(VUNDLEDIR); \
+	then git clone https://github.com/VundleVim/Vundle.vim.git $(VUNDLEDIR); \
 	fi
 
 ycm:
@@ -50,13 +50,13 @@ omz:
 	@if [ ! -d $(OMZDIR) ]; \
 	then \
 	@echo "Cloning oh-my-zsh..."; \
-	git clone git://github.com/robbyrussell/oh-my-zsh.git $(OMZDIR); \
+	git clone https://github.com/robbyrussell/oh-my-zsh.git $(OMZDIR); \
 	fi
 
 zsh-git-prompt:
 	@if [ ! -d $(ZGPDIR) ]; \
 	then \
 	@echo "Cloning zsh-git-prompt..."; \
-	git clone git://github.com/olivierverdier/zsh-git-prompt.git $(ZGPDIR); \
+	git clone https://github.com/olivierverdier/zsh-git-prompt.git $(ZGPDIR); \
 	fi
 
