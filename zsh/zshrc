@@ -55,8 +55,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
-#export PATH=$HOME/Data/bin:$PATH:/usr/local/sbt/bin
+export PATH=$HOME/bin:$PATH
+export PATH=$PATH:/opt/homebrew/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Compilation flags
